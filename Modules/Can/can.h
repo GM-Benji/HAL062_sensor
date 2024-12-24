@@ -7,9 +7,8 @@
 
 void CAN_Init(void);
 
-void Can_testMessage(void);
+void CAN_testMessage(void);
 
-void Can_sendMessage(uint8_t* msg, uint8_t ID);
-
+void CAN_sendMessage(uint8_t* msg, uint8_t ID);
 
 #endif // MODULES_CAN_CAN_H
