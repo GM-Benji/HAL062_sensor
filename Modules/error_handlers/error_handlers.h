@@ -9,7 +9,7 @@
 #ifndef ERROR_HANDLERS_ERROR_HANDLERS_H_
 #define ERROR_HANDLERS_ERROR_HANDLERS_H_
 
-#define BOARD_ERROR_ID ((uint8_t)0x70)
+#define BOARD_ERROR_ID ((uint8_t) 71)
 #define DEBUG_LEDS
 
 typedef enum {
