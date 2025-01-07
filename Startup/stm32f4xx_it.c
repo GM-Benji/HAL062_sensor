@@ -1,5 +1,6 @@
 #include "stm32f4xx_it.h"
 #include <stm32f4xx_hal_can.h>
+
 #include "Can/can.h"
 #include <stdbool.h>
 #include "leds/leds.h"
@@ -7,10 +8,8 @@
 extern CAN_HandleTypeDef hcan1;
 
 void NMI_Handler(void) {
-
 	while (1) {
 	}
-
 }
 
 void HardFault_Handler(void) {
@@ -50,15 +49,14 @@ void SysTick_Handler(void) {
 	if (work_led_state && work_led_cnt >= 100u) {
 		work_led_cnt = 0u;
 		work_led_state = false;
-		Leds_turnOffLed(LED1);
+		Leds_turnOff(LED_1);
 	}
 	if (!work_led_state && work_led_cnt >= 400u) {
 		work_led_cnt = 0u;
 		work_led_state = true;
-		Leds_turnOnLed(LED1);
+		Leds_turnOn(LED_1);
 	}
 	work_led_cnt++;
-
 
 }
 
@@ -73,6 +71,4 @@ void CAN1_RX0_IRQHandler(void) {
 void CAN1_RX1_IRQHandler(void) {
 	HAL_CAN_IRQHandler(&hcan1);
 }
-
-
 

@@ -6,7 +6,11 @@
 #ifndef MODULES_LEDS_LEDS_H
 #define MODULES_LEDS_LEDS_H
 
-/* MACROS ------------------------------------------------------------------*/
+/* Includes -------------------------------------------------------------------*/
+
+#include <stm32f4xx_hal.h>
+
+/* MACROS ---------------------------------------------------------------------*/
 
 #define LED_1		GPIO_PIN_0
 #define LED_2		GPIO_PIN_1

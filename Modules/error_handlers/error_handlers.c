@@ -95,8 +95,8 @@ void Error_Handler(Error_function error_func, Error_code error_code) {
 static void critical_handle(Error_code error_code) {
 #ifdef DEBUG_LEDS	
 
-	extern IWDG_HandleTypeDef hiwdg1;
-	HAL_IWDG_Refresh(&hiwdg1);
+//	extern IWDG_HandleTypeDef hiwdg1;
+//	HAL_IWDG_Refresh(&hiwdg1);
 
 	Leds_turnOff(LED_ALL);
 
@@ -112,7 +112,7 @@ static void critical_handle(Error_code error_code) {
 	if (error_code & 0b10000000) {owerflow_leds |= LED_4;}
 
 	while (1) {
-		HAL_IWDG_Refresh(&hiwdg1);
+//		HAL_IWDG_Refresh(&hiwdg1);
 		HAL_Delay(1000);
 
 		// blink leds for a short time to get more precision
