@@ -10,6 +10,7 @@
 #define ERROR_HANDLERS_ERROR_HANDLERS_H_
 
 #define BOARD_ERROR_ID ((uint8_t)0x70)
+#define DEBUG_LEDS
 
 typedef enum {
 	Error_test, // for debugging

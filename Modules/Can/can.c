@@ -6,17 +6,26 @@
  ******************************************************************************
  */
 
+/* Includes -------------------------------------------------------------------*/
+
+#include <stm32f4xx_hal.h>
 #include "Can/can.h"
 #include "leds/leds.h"
 #include "error_handlers/error_handlers.h"
 
-static uint32_t CAN_TxMailbox;
-static uint8_t CAN_RxMsg[8];
+/* Global variables -----------------------------------------------------------*/
 
 CAN_RxHeaderTypeDef CAN_RxHeader;
 CAN_TxHeaderTypeDef CAN_TxHeader;
 
 CAN_HandleTypeDef hcan1;
+
+/* Static variables -----------------------------------------------------------*/
+
+static uint32_t CAN_TxMailbox;
+static uint8_t CAN_RxMsg[8];
+
+/* Functions ------------------------------------------------------------------*/
 
 void CAN_Init(void) {
 	CAN_FilterTypeDef sFilterConfig;
@@ -86,13 +95,13 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 		} else {
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_RESET);
 		}
-		Leds_toggleLed(LED3);
+		Leds_toggle(LED_3);
 	}
 }
 
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 	HAL_CAN_GetRxMessage(&hcan1, CAN_RX_FIFO1, &CAN_RxHeader, CAN_RxMsg);
-	Leds_toggleLed(LED3);
+	Leds_toggle(LED_3);
 }
 
 void CAN_sendMessage(uint8_t *msg, uint8_t ID) {
@@ -107,7 +116,7 @@ void CAN_sendMessage(uint8_t *msg, uint8_t ID) {
 	}
 
 	HAL_CAN_AddTxMessage(&hcan1, &CAN_TxHeader, dane, &CAN_TxMailbox);
-	Leds_toggleLed(LED4);
+	Leds_toggle(LED_4);
 }
 
 void CAN_testMessage(void) {
@@ -122,6 +131,6 @@ void CAN_testMessage(void) {
 	CAN_TxHeader.DLC = 8;
 
 	HAL_CAN_AddTxMessage(&hcan1, &CAN_TxHeader, dane, &CAN_TxMailbox);
-	Leds_toggleLed(LED4);
+	Leds_toggle(LED_4);
 }
 
